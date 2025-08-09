@@ -383,11 +383,11 @@ class DevCycleFlutterClientSdkPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   private fun JSONArray.toMap(): List<*> {
-    val map = (0 until this.length()).associate { index -> Pair(index.toString(), this[index]) }
+    val map = (0 until this.length()).associate { index: Int -> Pair(index.toString(), this[index]) }
     return JSONObject(map as Map<String, Any>).toMap().values.toList()
   }
 
-  private fun JSONObject.toMap(): Map<String, *> = keys().asSequence().associateWith { key ->
+  private fun JSONObject.toMap(): Map<String, *> = keys().asSequence().associateWith { key: String ->
     when (val value = this[key])
     {
       is JSONArray -> value.toMap()
